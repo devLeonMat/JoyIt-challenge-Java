@@ -22,7 +22,6 @@ public class SalesMapper {
                 .idClient(salesEntity.getClientId())
                 .productId(salesEntity.getProductId())
                 .build();
-
     }
 
     public SalesResponseDto toDto(Sales salesEntity, StoreResponseApiDto responseApiDto) {
@@ -34,9 +33,7 @@ public class SalesMapper {
                 .productId(salesEntity.getProductId())
                 .productDetail(productMapper.toDto(responseApiDto))
                 .build();
-
     }
-
 
     public Sales toEntity(SalesRequestDto salesRequestDto) {
         return Sales.builder()
@@ -46,8 +43,5 @@ public class SalesMapper {
                 .clientId(salesRequestDto.getIdClient())
                 .productId(salesRequestDto.getProductId())
                 .build();
-
     }
-
-
 }

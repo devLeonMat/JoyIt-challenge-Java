@@ -2,11 +2,8 @@ package com.joyIt.rleon.challenge.TechnicalChallenge.application.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joyIt.rleon.challenge.TechnicalChallenge.AppChallengeUtilsForTest;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.request.ProductRequestDto;
 import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.request.SalesRequestDto;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.response.ProductResponseDto;
 import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.response.SalesResponseDto;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.facade.ProductFacade;
 import com.joyIt.rleon.challenge.TechnicalChallenge.application.facade.SalesFacade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

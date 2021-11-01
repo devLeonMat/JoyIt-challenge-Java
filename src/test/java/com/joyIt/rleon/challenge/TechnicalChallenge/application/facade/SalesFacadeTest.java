@@ -1,12 +1,10 @@
 package com.joyIt.rleon.challenge.TechnicalChallenge.application.facade;
 
 import com.joyIt.rleon.challenge.TechnicalChallenge.AppChallengeUtilsForTest;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.request.ProductRequestDto;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.response.ProductResponseDto;
-import com.joyIt.rleon.challenge.TechnicalChallenge.application.mapper.ProductMapper;
+import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.request.SalesRequestDto;
+import com.joyIt.rleon.challenge.TechnicalChallenge.application.dto.response.SalesResponseDto;
 import com.joyIt.rleon.challenge.TechnicalChallenge.application.mapper.SalesMapper;
-import com.joyIt.rleon.challenge.TechnicalChallenge.provider.store.dto.request.StoreRequestApiDto;
-import com.joyIt.rleon.challenge.TechnicalChallenge.service.ProductService;
+import com.joyIt.rleon.challenge.TechnicalChallenge.persistence.entity.Sales;
 import com.joyIt.rleon.challenge.TechnicalChallenge.service.SalesService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,41 +38,41 @@ public class SalesFacadeTest {
 
 
     @Test
-    void getProductsTest() {
-        List<ProductResponseDto> responseDtoList = AppChallengeUtilsForTest.createListProductResponseDto(2);
+    void getSalesTest() {
+        List<SalesResponseDto> responseDtoList = AppChallengeUtilsForTest.createListSalesResponseDto(2);
 
         //when
-        when(productService.getProducts(anyLong())).thenReturn(responseDtoList);
-        List<ProductResponseDto> result = underTest.getProducts(1L);
+        when(salesService.getSales()).thenReturn(responseDtoList);
+        List<SalesResponseDto> result = underTest.getSales();
         //then
-        verify(productService, times(1)).getProducts(anyLong());
+        verify(salesService, times(1)).getSales();
         assertThat(result).isNotNull().usingRecursiveComparison().isEqualTo(responseDtoList);
     }
 
     @Test
-    void getProductByIdTest() {
-        ProductResponseDto responseDto = AppChallengeUtilsForTest.createProductResponseDto();
+    void getSalesByIdTest() {
+        SalesResponseDto responseDto = AppChallengeUtilsForTest.createSalesResponseDto();
 
         //when
-        when(productService.getProductById(anyLong())).thenReturn(responseDto);
-        ProductResponseDto result = underTest.getProductById(1L);
+        when(salesService.getSale(anyLong())).thenReturn(responseDto);
+        SalesResponseDto result = underTest.getSaleById(1L);
         //then
-        verify(productService, times(1)).getProductById(anyLong());
+        verify(salesService, times(1)).getSale(anyLong());
         assertThat(result).isNotNull().usingRecursiveComparison().isEqualTo(responseDto);
     }
 
     @Test
-    void createProductTest() {
-        ProductResponseDto responseDto = AppChallengeUtilsForTest.createProductResponseDto();
-        ProductRequestDto requestDto = AppChallengeUtilsForTest.createProductRequestDto();
-        StoreRequestApiDto requestApiDto = AppChallengeUtilsForTest.createStoreRequestApiDto();
+    void createSalesTest() {
+        SalesResponseDto responseDto = AppChallengeUtilsForTest.createSalesResponseDto();
+        SalesRequestDto requestDto = AppChallengeUtilsForTest.createSalesRequestDto();
+        Sales requestApiDto = AppChallengeUtilsForTest.createSales();
 
         //when
-        when(productMapper.toDto(any(ProductRequestDto.class))).thenReturn(requestApiDto);
-        when(productService.createProduct(any())).thenReturn(responseDto);
-        ProductResponseDto result = underTest.createProduct(requestDto);
+        when(salesMapper.toEntity(any(SalesRequestDto.class))).thenReturn(requestApiDto);
+        when(salesService.createNewSales(any())).thenReturn(responseDto);
+        SalesResponseDto result = underTest.createSales(requestDto);
         //then
-        verify(productService, times(1)).createProduct(any());
+        verify(salesService, times(1)).createNewSales(any());
         assertThat(result).isNotNull().usingRecursiveComparison().isEqualTo(responseDto);
     }
 
